@@ -5,12 +5,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.app.movies.R;
 import com.app.movies.ui.viewModel.MovieViewModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
@@ -42,6 +46,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
     static class MovieViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.movie_image)
+        ImageView image;
+        @BindView(R.id.movie_title)
+        TextView title;
+        @BindView(R.id.movie_year)
+        TextView year;
+        @BindView(R.id.movie_overview)
+        TextView overview;
 
         public MovieViewHolder(View itemView) {
             super(itemView);
@@ -49,7 +61,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         }
 
         public void bind(MovieViewModel movieViewModel) {
-
+            Picasso.with(itemView.getContext())
+                    .load(movieViewModel.getImage())
+                    .fit()
+                    .into(image);
+            title.setText(movieViewModel.getTitle());
+            year.setText(movieViewModel.getYear());
+            overview.setText(movieViewModel.getOverview());
         }
     }
 }
