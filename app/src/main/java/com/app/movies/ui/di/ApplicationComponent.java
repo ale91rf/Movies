@@ -1,7 +1,10 @@
-package com.app.movies.di;
+package com.app.movies.ui.di;
 
 
-import com.app.movies.App;
+import com.app.movies.ui.App;
+import com.app.movies.data.di.RepositoryModule;
+import com.app.movies.data.di.ServiceModule;
+import com.app.movies.domain.InteractorModule;
 
 import javax.inject.Singleton;
 
@@ -13,7 +16,10 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         AndroidSupportInjectionModule.class,
         ApplicationModule.class,
-        ActivityBuilder.class
+        ActivityBuilder.class,
+        ServiceModule.class,
+        RepositoryModule.class,
+        InteractorModule.class
 })
 
 public interface ApplicationComponent {

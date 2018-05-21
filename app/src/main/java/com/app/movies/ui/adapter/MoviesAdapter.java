@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.movies.R;
-import com.app.movies.ui.viewModel.MovieViewModel;
+import com.app.movies.ui.mapper.MovieViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -21,8 +21,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
     private List<MovieViewModel> movieViewModels;
 
-    public void setViewModels(List<MovieViewModel> movieViewModels) {
-        this.movieViewModels = movieViewModels;
+    public void addMovies(List<MovieViewModel> movieViewModels) {
+        if (this.movieViewModels == null) {
+            this.movieViewModels = movieViewModels;
+        } else {
+            this.movieViewModels.addAll(movieViewModels);
+        }
         notifyDataSetChanged();
     }
 

@@ -1,4 +1,4 @@
-package com.app.movies.domain;
+package com.app.movies.domain.interactor;
 
 import io.reactivex.Scheduler;
 

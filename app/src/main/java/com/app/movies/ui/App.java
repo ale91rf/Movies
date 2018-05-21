@@ -1,10 +1,10 @@
-package com.app.movies;
+package com.app.movies.ui;
 
 import android.app.Activity;
 import android.app.Application;
 
-import com.app.movies.di.ApplicationComponent;
-import com.app.movies.di.DaggerApplicationComponent;
+import com.app.movies.ui.di.ApplicationComponent;
+import com.app.movies.ui.di.DaggerApplicationComponent;
 
 import javax.inject.Inject;
 

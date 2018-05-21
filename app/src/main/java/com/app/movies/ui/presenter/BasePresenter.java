@@ -2,7 +2,7 @@ package com.app.movies.ui.presenter;
 
 import android.support.annotation.CallSuper;
 
-import com.app.movies.ui.viewModel.MovieViewModel;
+import com.app.movies.ui.mapper.MovieViewModel;
 import com.app.movies.ui.view.BaseView;
 
 import java.util.List;

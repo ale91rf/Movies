@@ -1,4 +1,4 @@
-package com.app.movies.di;
+package com.app.movies.ui.di;
 
 import com.app.movies.ui.activity.BaseActivity;
 import com.app.movies.ui.activity.PopularMoviesActivities;

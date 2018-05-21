@@ -1,6 +1,6 @@
 package com.app.movies.ui.view;
 
-import com.app.movies.ui.viewModel.MovieViewModel;
+import com.app.movies.ui.mapper.MovieViewModel;
 
 import java.util.List;
 
