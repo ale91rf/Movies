@@ -36,6 +36,12 @@ public abstract class BasePresenter<T extends BaseView> {
         }
     }
 
+    protected void showError() {
+        if (isViewAttached()) {
+            view.showError();
+        }
+    }
+
     @CallSuper
     public void onDestroy() {
         view = null;

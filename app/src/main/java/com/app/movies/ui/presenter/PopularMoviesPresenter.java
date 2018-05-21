@@ -45,6 +45,7 @@ public class PopularMoviesPresenter extends BasePresenter<PopularMoviesView> {
             @Override
             public void onError(Throwable e) {
                 hideProgress();
+                showError();
             }
         });
     }

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.app.movies.R;
 import com.app.movies.ui.view.BaseView;
@@ -33,5 +34,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     @Override
     public void hideProgress() {
         loading.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showError() {
+        Toast.makeText(getApplicationContext(), R.string.error_text, Toast.LENGTH_SHORT).show();
     }
 }
