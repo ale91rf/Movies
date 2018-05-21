@@ -1,4 +1,4 @@
-package com.app.movies.ui.mapper;
+package com.app.movies.ui.viewModel;
 
 public class MovieViewModel {
 

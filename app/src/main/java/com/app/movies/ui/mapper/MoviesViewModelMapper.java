@@ -1,10 +1,10 @@
-package com.app.movies.ui;
+package com.app.movies.ui.mapper;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.app.movies.domain.model.Movie;
 import com.app.movies.ui.util.Utilities;
-import com.app.movies.ui.mapper.MovieViewModel;
+import com.app.movies.ui.viewModel.MovieViewModel;
 
 import java.util.List;
 

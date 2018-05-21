@@ -2,7 +2,7 @@ package com.app.movies.ui.presenter;
 
 import com.app.movies.domain.interactor.GetPopularMoviesInteractor;
 import com.app.movies.domain.model.MoviesData;
-import com.app.movies.ui.MoviesViewModelMapper;
+import com.app.movies.ui.mapper.MoviesViewModelMapper;
 import com.app.movies.ui.util.Utilities;
 import com.app.movies.ui.view.PopularMoviesView;
 

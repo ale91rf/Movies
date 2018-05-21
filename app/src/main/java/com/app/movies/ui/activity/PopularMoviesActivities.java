@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.app.movies.R;
-import com.app.movies.ui.mapper.MovieViewModel;
+import com.app.movies.ui.viewModel.MovieViewModel;
 import com.app.movies.ui.adapter.MoviesAdapter;
 import com.app.movies.ui.presenter.PopularMoviesPresenter;
 import com.app.movies.ui.view.PopularMoviesView;
