@@ -7,4 +7,8 @@ import io.reactivex.Single;
 public interface MoviesRepositoryContractor {
 
     Single<MoviesData> getPopularMovies(final String page);
+
+    Single<MoviesData> getMoviesByQuery(final String page,
+                                        final String query);
+
 }
