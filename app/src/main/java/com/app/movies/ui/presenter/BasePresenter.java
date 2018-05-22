@@ -10,6 +10,10 @@ import java.util.List;
 
 public abstract class BasePresenter<T extends BaseView> {
 
+    public interface ViewFunction<V> {
+        void execute(V view);
+    }
+
     protected final MoviesViewModelMapper moviesViewModelMapper;
 
     protected int page = 0;
@@ -27,6 +31,12 @@ public abstract class BasePresenter<T extends BaseView> {
 
     public BasePresenter(MoviesViewModelMapper moviesViewModelMapper) {
         this.moviesViewModelMapper = moviesViewModelMapper;
+    }
+
+    protected void doInView(ViewFunction<T> function) {
+        if (isViewAttached()) {
+            function.execute(view);
+        }
     }
 
     protected void showProgress() {

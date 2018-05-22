@@ -2,16 +2,11 @@ package com.app.movies.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.app.movies.R;
-import com.app.movies.ui.viewModel.MovieViewModel;
-import com.app.movies.ui.adapter.MoviesAdapter;
 import com.app.movies.ui.presenter.PopularMoviesPresenter;
 import com.app.movies.ui.view.PopularMoviesView;
 
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -23,7 +18,7 @@ public class PopularMoviesActivities extends BaseActivity implements PopularMovi
 
     @OnClick(R.id.fab)
     void onFabClick() {
-        //TODO
+        popularMoviesPresenter.onFabClicked();
     }
 
     @Inject
@@ -50,7 +45,7 @@ public class PopularMoviesActivities extends BaseActivity implements PopularMovi
 
     @Override
     public void goToSearchScreen() {
-        //TODO
+        SearchMoviesActivity.startActivity(this);
     }
 
 

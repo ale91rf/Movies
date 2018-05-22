@@ -4,7 +4,7 @@ package com.app.movies.ui.di;
 import com.app.movies.ui.App;
 import com.app.movies.data.di.RepositoryModule;
 import com.app.movies.data.di.ServiceModule;
-import com.app.movies.domain.InteractorModule;
+import com.app.movies.domain.di.InteractorModule;
 
 import javax.inject.Singleton;
 

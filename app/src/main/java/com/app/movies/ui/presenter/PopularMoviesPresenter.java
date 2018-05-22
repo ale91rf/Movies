@@ -51,4 +51,7 @@ public class PopularMoviesPresenter extends BasePresenter<PopularMoviesView> {
     }
 
 
+    public void onFabClicked() {
+        doInView(PopularMoviesView::goToSearchScreen);
+    }
 }

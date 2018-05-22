@@ -6,14 +6,14 @@ import javax.inject.Inject;
 
 import io.reactivex.SingleObserver;
 
-public class GetMoviesByQuery extends BaseInteractor {
+public class GetMoviesByQueryInteractor extends BaseInteractor {
 
     private MoviesRepositoryContractor moviesRepositoryContractor;
 
     @Inject
-    public GetMoviesByQuery(ThreadExecutor subscriberOn,
-                            ThreadExecutor observerOn,
-                            MoviesRepositoryContractor moviesRepositoryContractor) {
+    public GetMoviesByQueryInteractor(ThreadExecutor subscriberOn,
+                                      ThreadExecutor observerOn,
+                                      MoviesRepositoryContractor moviesRepositoryContractor) {
         super(subscriberOn, observerOn);
         this.moviesRepositoryContractor = moviesRepositoryContractor;
     }
