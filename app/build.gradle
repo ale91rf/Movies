@@ -55,7 +55,7 @@ dependencies {
     //Picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
 
-    implementation 'com.annimon:stream:1.2.0'
+    implementation "com.annimon:stream:$annimon_version"
 
 
 

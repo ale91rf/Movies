@@ -21,12 +21,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
     private List<MovieViewModel> movieViewModels;
 
+    public MoviesAdapter(List<MovieViewModel> movieViewModels) {
+        this.movieViewModels = movieViewModels;
+    }
+
     public void addMovies(List<MovieViewModel> movieViewModels) {
-        if (this.movieViewModels == null) {
-            this.movieViewModels = movieViewModels;
-        } else {
-            this.movieViewModels.addAll(movieViewModels);
-        }
+        this.movieViewModels.addAll(movieViewModels);
         notifyDataSetChanged();
     }
 

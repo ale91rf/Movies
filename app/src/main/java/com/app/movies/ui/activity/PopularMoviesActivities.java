@@ -15,25 +15,20 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 
 public class PopularMoviesActivities extends BaseActivity implements PopularMoviesView {
 
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-
     @OnClick(R.id.fab)
     void onFabClick() {
-
+        //TODO
     }
 
     @Inject
     PopularMoviesPresenter popularMoviesPresenter;
 
-    private MoviesAdapter moviesAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,20 +47,15 @@ public class PopularMoviesActivities extends BaseActivity implements PopularMovi
         super.onDestroy();
     }
 
-    @Override
-    void initView() {
-        moviesAdapter = new MoviesAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(moviesAdapter);
-    }
 
     @Override
     public void goToSearchScreen() {
         //TODO
     }
 
+
     @Override
-    public void setMovies(List<MovieViewModel> movies) {
-        moviesAdapter.addMovies(movies);
+    protected void getMoreMovies() {
+        popularMoviesPresenter.getMoreMovies();
     }
 }
