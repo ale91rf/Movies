@@ -13,24 +13,23 @@ import io.reactivex.disposables.Disposable;
 
 public class PopularMoviesPresenter extends BasePresenter<PopularMoviesView> {
 
-    private final MoviesViewModelMapper moviesViewModelMapper;
     private final GetPopularMoviesInteractor getPopularMoviesInteractor;
-    private int page = 1;
+
 
     @Inject
     public PopularMoviesPresenter(GetPopularMoviesInteractor getPopularMoviesInteractor,
                                   MoviesViewModelMapper moviesViewModelMapper) {
+        super(moviesViewModelMapper);
         this.getPopularMoviesInteractor = getPopularMoviesInteractor;
-        this.moviesViewModelMapper = moviesViewModelMapper;
     }
 
     public void start() {
-        getMovies(page);
+        getMovies();
     }
 
-    private void getMovies(int page) {
+    protected void getMovies() {
         showProgress();
-        getPopularMoviesInteractor.getPopularMovies(Utilities.intToString(page), new SingleObserver<MoviesData>() {
+        getPopularMoviesInteractor.getPopularMovies(Utilities.intToString(getNextPage()), new SingleObserver<MoviesData>() {
             @Override
             public void onSubscribe(Disposable d) {
 
@@ -39,6 +38,7 @@ public class PopularMoviesPresenter extends BasePresenter<PopularMoviesView> {
             @Override
             public void onSuccess(MoviesData moviesData) {
                 hideProgress();
+                setData(moviesData.getPage(), moviesData.getTotalPages());
                 setMovies(moviesViewModelMapper.transformMovies(moviesData.getResults()));
             }
 
@@ -49,4 +49,6 @@ public class PopularMoviesPresenter extends BasePresenter<PopularMoviesView> {
             }
         });
     }
+
+
 }
