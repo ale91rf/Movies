@@ -8,7 +8,9 @@ public interface BaseView {
 
     void showProgress();
     void hideProgress();
-    void setMovies(List<MovieViewModel> movies);
+    void setUpMovies(List<MovieViewModel> movies);
+    void addMovies(List<MovieViewModel> movies);
+
 
     void showError();
 }

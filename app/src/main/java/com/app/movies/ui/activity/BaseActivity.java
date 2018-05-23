@@ -37,23 +37,25 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
     protected void initView() {
+        moviesAdapter = new MoviesAdapter();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
         PaginationListener paginationListener = new PaginationListener(linearLayoutManager);
         recyclerView.addOnScrollListener(paginationListener);
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(moviesAdapter);
     }
 
 
     @Override
-    public void setMovies(List<MovieViewModel> movies) {
-        if (moviesAdapter == null) {
-            moviesAdapter = new MoviesAdapter(movies);
-            recyclerView.setAdapter(moviesAdapter);
-        } else {
-            moviesAdapter.addMovies(movies);
-            recyclerView.post(() -> moviesAdapter.notifyItemInserted(movies.size() - 1));
-        }
+    public void setUpMovies(List<MovieViewModel> movies) {
+        moviesAdapter.setUpMovies(movies);
+    }
+
+    @Override
+    public void addMovies(List<MovieViewModel> movies) {
+        moviesAdapter.addMovies(movies);
+        recyclerView.post(() -> moviesAdapter.notifyItemInserted(movies.size() - 1));
     }
 
     @Override

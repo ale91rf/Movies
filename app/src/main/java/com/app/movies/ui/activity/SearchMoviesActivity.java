@@ -42,6 +42,6 @@ public class SearchMoviesActivity extends BaseActivity implements SearchMoviesVi
 
     @Override
     protected void getMoreMovies() {
-        searchMoviesPresenter.getMoreMovies();
+        searchMoviesPresenter.onGetMoreMovies();
     }
 }

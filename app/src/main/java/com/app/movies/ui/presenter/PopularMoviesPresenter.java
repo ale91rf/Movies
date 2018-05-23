@@ -24,10 +24,10 @@ public class PopularMoviesPresenter extends BasePresenter<PopularMoviesView> {
     }
 
     public void start() {
-        getMovies();
+        getMovies(true);
     }
 
-    protected void getMovies() {
+    private void getMovies(boolean setUp) {
         showProgress();
         getPopularMoviesInteractor.getPopularMovies(Utilities.intToString(getNextPage()), new SingleObserver<MoviesData>() {
             @Override
@@ -39,7 +39,7 @@ public class PopularMoviesPresenter extends BasePresenter<PopularMoviesView> {
             public void onSuccess(MoviesData moviesData) {
                 hideProgress();
                 setData(moviesData.getPage(), moviesData.getTotalPages());
-                setMovies(moviesViewModelMapper.transformMovies(moviesData.getResults()));
+                setMovies(moviesViewModelMapper.transformMovies(moviesData.getResults()), setUp);
             }
 
             @Override
@@ -48,6 +48,10 @@ public class PopularMoviesPresenter extends BasePresenter<PopularMoviesView> {
                 showError();
             }
         });
+    }
+
+    protected void getMoreMovies() {
+        getMovies(false);
     }
 
 

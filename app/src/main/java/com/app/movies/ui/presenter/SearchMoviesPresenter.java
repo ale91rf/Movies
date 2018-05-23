@@ -19,7 +19,7 @@ public class SearchMoviesPresenter extends BasePresenter<SearchMoviesView> {
     }
 
     @Override
-    protected void getMovies() {
+    protected void getMoreMovies() {
 
     }
 }

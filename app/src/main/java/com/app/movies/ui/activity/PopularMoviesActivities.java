@@ -6,7 +6,10 @@ import android.support.annotation.Nullable;
 import com.app.movies.R;
 import com.app.movies.ui.presenter.PopularMoviesPresenter;
 import com.app.movies.ui.view.PopularMoviesView;
+import com.app.movies.ui.viewModel.MovieViewModel;
 
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -51,6 +54,7 @@ public class PopularMoviesActivities extends BaseActivity implements PopularMovi
 
     @Override
     protected void getMoreMovies() {
-        popularMoviesPresenter.getMoreMovies();
+        popularMoviesPresenter.onGetMoreMovies();
     }
+
 }

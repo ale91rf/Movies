@@ -21,8 +21,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
     private List<MovieViewModel> movieViewModels;
 
-    public MoviesAdapter(List<MovieViewModel> movieViewModels) {
+    public void setUpMovies(List<MovieViewModel> movieViewModels) {
         this.movieViewModels = movieViewModels;
+        notifyDataSetChanged();
     }
 
     public void addMovies(List<MovieViewModel> movieViewModels) {
