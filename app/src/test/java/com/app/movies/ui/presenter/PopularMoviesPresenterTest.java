@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ import java.util.List;
 import io.reactivex.SingleObserver;
 
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -86,7 +86,7 @@ public class PopularMoviesPresenterTest {
     }
 
     @Test
-    public void shouldShowErrorWhenThereIrAnErrorTest() {
+    public void shouldShowErrorWhenThereIrAnErrorTest() throws Exception {
         //when
         presenter.start();
 
@@ -97,5 +97,37 @@ public class PopularMoviesPresenterTest {
         verify(view).hideProgress();
         verify(view).showError();
         verifyNoMoreInteractions(view);
+    }
+
+    @Test
+    public void shouldGoToTheSearchScreenTest() throws Exception {
+        //when
+        presenter.onFabClicked();
+
+        //then
+        verify(view).goToSearchScreen();
+    }
+
+    @Test
+    public void shouldAddMoreMovies() {
+        //given
+        List<Movie> movies = new ArrayList<>();
+        MoviesData moviesData = new MoviesData(1, 1234, 4, movies);
+        List<MovieViewModel> movieViewModels = new ArrayList<>();
+        when(moviesViewModelMapper.transformMovies(movies)).thenReturn(movieViewModels);
+        presenter.start();
+        verify(getPopularMoviesInteractor).getPopularMovies(eq("1"), captor.capture());
+        captor.getValue().onSuccess(moviesData);
+        verify(view).setUpMovies(movieViewModels);
+
+        //when
+        presenter.onGetMoreMovies();
+
+        //then
+        verify(view, times(2)).showProgress();
+        verify(getPopularMoviesInteractor).getPopularMovies(eq("2"), captor.capture());
+        captor.getValue().onSuccess(moviesData);
+        verify(view, times(2)).hideProgress();
+        verify(view).addMovies(movieViewModels);
     }
 }
