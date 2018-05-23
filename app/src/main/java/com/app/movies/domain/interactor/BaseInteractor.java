@@ -8,6 +8,7 @@ public abstract class BaseInteractor {
     private ThreadExecutor subscriberOn;
     private ThreadExecutor observerOn;
 
+
     public BaseInteractor(ThreadExecutor subscriberOn,
                           ThreadExecutor observerOn) {
         this.subscriberOn = subscriberOn;

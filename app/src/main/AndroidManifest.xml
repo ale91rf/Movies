@@ -26,7 +26,9 @@
         <activity
             android:name=".ui.activity.SearchMoviesActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible"/>
+            android:windowSoftInputMode="stateVisible"
+            android:label="@string/search_title"
+            android:theme="@style/AppTheme.Activity"/>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package com.app.movies.ui.util;
 
+import android.text.TextUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,15 +19,19 @@ public class Utilities {
     }
 
     public static String transformDate(String dateString) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat yearFormatter = new SimpleDateFormat("yyyy");
-        try {
-            Date date = formatter.parse(dateString);
-            return yearFormatter.format(date);
+        if (!TextUtils.isEmpty(dateString)) {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat yearFormatter = new SimpleDateFormat("yyyy");
+            try {
+                Date date = formatter.parse(dateString);
+                return yearFormatter.format(date);
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return "";
+            } catch (ParseException e) {
+                e.printStackTrace();
+            } catch (NullPointerException n) {
+                n.printStackTrace();
+            }
         }
+        return "";
     }
 }
