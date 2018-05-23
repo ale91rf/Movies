@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
@@ -39,6 +40,9 @@ public class PopularMoviesPresenterTest {
 
     @Captor
     ArgumentCaptor<SingleObserver<MoviesData>> captor;
+
+    @Mock
+    Throwable throwable;
 
     @Mock
     private PopularMoviesPresenter presenter;
@@ -78,6 +82,20 @@ public class PopularMoviesPresenterTest {
         captor.getValue().onSuccess(moviesData);
         verify(view).hideProgress();
         verify(view).setUpMovies(movieViewModels);
+        verifyNoMoreInteractions(view);
+    }
+
+    @Test
+    public void shouldShowErrorWhenThereIrAnErrorTest() {
+        //when
+        presenter.start();
+
+        //then
+        verify(view).showProgress();
+        verify(getPopularMoviesInteractor).getPopularMovies(eq("1"), captor.capture());
+        captor.getValue().onError(throwable);
+        verify(view).hideProgress();
+        verify(view).showError();
         verifyNoMoreInteractions(view);
     }
 }
