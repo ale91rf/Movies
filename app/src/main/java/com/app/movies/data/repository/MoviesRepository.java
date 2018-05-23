@@ -26,4 +26,10 @@ public class MoviesRepository implements MoviesRepositoryContractor {
         return service.getPopularMovies(page)
                 .map(moviesMapper::transformMovies);
     }
+
+    @Override
+    public Single<MoviesData> getMoviesByQuery(String page, String query) {
+        return service.getMoviesByQuery(page, query)
+                .map(moviesMapper::transformMovies);
+    }
 }

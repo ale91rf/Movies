@@ -10,6 +10,10 @@ import java.util.List;
 
 public abstract class BasePresenter<T extends BaseView> {
 
+    public interface ViewFunction<V> {
+        void execute(V view);
+    }
+
     protected final MoviesViewModelMapper moviesViewModelMapper;
 
     protected int page = 0;
@@ -21,6 +25,7 @@ public abstract class BasePresenter<T extends BaseView> {
     public void setView(T view) {
         this.view = view;
     }
+
     public boolean isViewAttached() {
         return view != null;
     }
@@ -29,12 +34,19 @@ public abstract class BasePresenter<T extends BaseView> {
         this.moviesViewModelMapper = moviesViewModelMapper;
     }
 
+    protected void doInView(ViewFunction<T> function) {
+        if (isViewAttached()) {
+            function.execute(view);
+        }
+    }
+
     protected void showProgress() {
         isLoading = true;
         if (isViewAttached()) {
             view.showProgress();
         }
     }
+
     protected void hideProgress() {
         isLoading = false;
         if (isViewAttached()) {
@@ -42,9 +54,13 @@ public abstract class BasePresenter<T extends BaseView> {
         }
     }
 
-    protected void setMovies(List<MovieViewModel> movies) {
+    protected void setMovies(List<MovieViewModel> movies, boolean setUp) {
         if (isViewAttached()) {
-            view.setMovies(movies);
+            if (setUp) {
+                view.setUpMovies(movies);
+            } else {
+                view.addMovies(movies);
+            }
         }
     }
 
@@ -58,9 +74,9 @@ public abstract class BasePresenter<T extends BaseView> {
         return page + 1;
     }
 
-    public void getMoreMovies() {
+    public void onGetMoreMovies() {
         if (!isLastPage && !isLoading) {
-            getMovies();
+            getMoreMovies();
         }
     }
 
@@ -69,7 +85,7 @@ public abstract class BasePresenter<T extends BaseView> {
         isLastPage = page >= totalPages;
     }
 
-    protected abstract void getMovies();
+    protected abstract void getMoreMovies();
 
     @CallSuper
     public void onDestroy() {

@@ -24,10 +24,6 @@ public class ApplicationModule {
         return application;
     }
 
-    @Provides
-    Resources providesResources(Context context) {
-        return context.getResources();
-    }
 
     @Provides
     @Singleton
